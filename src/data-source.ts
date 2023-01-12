@@ -3,8 +3,11 @@ import { DataSource, DataSourceOptions } from "typeorm";
 import path from "path";
 
 const AppDataSourceConfig = (): DataSourceOptions => {
-  const patchEntities: string = path.join(__dirname, "./entities/*.{ts,js");
-  const patchMigrations: string = path.join(__dirname, "./migrations/*.{ts,js");
+  const patchEntities: string = path.join(__dirname, "./entities/*.{ts,js}");
+  const patchMigrations: string = path.join(
+    __dirname,
+    "./migrations/*.{ts,js}"
+  );
   const nodeEnv: string = process.env.NODE_ENV || "";
 
   if (nodeEnv == "production") {
