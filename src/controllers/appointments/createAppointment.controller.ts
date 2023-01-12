@@ -4,7 +4,7 @@ import { createAppointMentService } from "../../services/appointments/createAppo
 const createAppointmentController = async (req: Request, res: Response) => {
   const data = await createAppointMentService(req.body);
 
-  return res.status(200).json(data);
+  return res.status(201).json(data);
 };
 
 export { createAppointmentController };
