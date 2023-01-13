@@ -1,9 +1,11 @@
+import { hashSync } from "bcrypt";
 import {
   Entity,
   PrimaryGeneratedColumn,
   Column,
   OneToMany,
   ManyToOne,
+  BeforeInsert,
 } from "typeorm";
 import Appointment from "./appointments.entity";
 import Diagnostic from "./diagnostics.entity";
@@ -27,6 +29,9 @@ class Patient {
 
   @Column({ length: 72, unique: true })
   email: string;
+
+  @Column({ length: 72 })
+  password: string;
 
   @Column({ length: 20 })
   genre: string;
@@ -69,5 +74,10 @@ class Patient {
 
   @OneToMany(() => Diagnostic, (diagnostic) => diagnostic.patient)
   diagnostic: Diagnostic[];
+
+  @BeforeInsert()
+  hashPassword() {
+    this.password = hashSync(this.password, 10);
+  }
 }
 export default Patient;
