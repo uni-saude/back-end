@@ -3,7 +3,7 @@ export interface IPatientExpressRequest {
   cpf: string;
   age: number;
   email: string;
-  passoword: string;
+  password: string;
   genre: string;
   phone: string;
   father: string;
@@ -25,4 +25,18 @@ export interface IPatientSessionRequest{
 }
 export interface IPatientSession{
   token: string;
+}
+export interface IPatientUpdate{
+  name?: string;
+  cpf?: string;
+  age?: number;
+  email?: string;
+  password?: string;
+  genre?: string;
+  phone?: string;
+  father?: string;
+  mother?: string;
+  blood_type?: string;
+  tutorId?: string;
+  addressId?: string;
 }

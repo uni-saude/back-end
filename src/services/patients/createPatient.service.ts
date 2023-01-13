@@ -6,7 +6,7 @@ import Tutor from "../../entities/tutors.entity";
 import Patient from "../../entities/patientsEntity";
 
 const patientsCreateService = async (patientData:IPatientExpressRequest):Promise<IPatient> => {
-    const { age, father, mother, tutorId } = patientData
+    const { age, father, mother, tutorId, email, cpf } = patientData
     const tutorRepo = AppDataSource.getRepository(Tutor)
     const valitedTutor = tutorRepo.findOneBy({id:tutorId})
 
@@ -18,10 +18,16 @@ const patientsCreateService = async (patientData:IPatientExpressRequest):Promise
     }
 
     const patientRepo = AppDataSource.getRepository(Patient)
+    const findPatient = await patientRepo.findOneBy({email:email, cpf:cpf})
+    
+    if(findPatient){
+        throw new AppError(400, "Patient is alredy exist")
+    }
+
     const newPatient = patientRepo.create(patientData)
 
     await patientRepo.save(newPatient)
-    const patientTrated = patientDataWhiteout.validate(newPatient)
+    const patientTrated = patientDataWhiteout.validate(newPatient, {stripUnknown:true})
     return patientTrated
 }
 export {patientsCreateService};

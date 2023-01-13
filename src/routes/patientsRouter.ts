@@ -6,12 +6,18 @@ import { createAddressPatientController } from "../controllers/patients/createAd
 import { patientDataRequestSerializer, patientSessionRequestSerializer, tutorDataRequestSerializer } from "../schemas/patients";
 import { addressDataRequestSerializer } from "../schemas/addresses";
 import { verifyBodyRequestMiddleware } from "../middlewares/Global/verifyBodyRequest.middleware";
+import { patientsUpdateController } from "../controllers/patients/updatePatients.controller";
+import { ensureAuthMiddleware } from "../middlewares/Global/ensureAuth.middleware";
+import { patientsDeleteController } from "../controllers/patients/deletePatient.controller";
 
 
 const routePatients = Router()
 
 routePatients.post("", verifyBodyRequestMiddleware(patientDataRequestSerializer), patientsCreateController)
-routePatients.post("", verifyBodyRequestMiddleware(patientSessionRequestSerializer),patientsSessionController)
+routePatients.post("/login", verifyBodyRequestMiddleware(patientSessionRequestSerializer), patientsSessionController)
+routePatients.patch("/:id", ensureAuthMiddleware, patientsUpdateController)
+routePatients.delete("/:id", ensureAuthMiddleware, patientsDeleteController)
 routePatients.post("/tutor", verifyBodyRequestMiddleware(tutorDataRequestSerializer), TutorCreateController)
+
 routePatients.post("/address", verifyBodyRequestMiddleware(addressDataRequestSerializer),createAddressPatientController)
 export default routePatients

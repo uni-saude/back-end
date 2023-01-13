@@ -8,7 +8,7 @@ const patientDataRequestSerializer:SchemaOf<IPatientExpressRequest> = yup.object
     cpf: yup.string().required(),
     age: yup.number().required(),
     email: yup.string().required(),
-    passoword: yup.string().required(),
+    password: yup.string().required(),
     genre: yup.string().required(),
     phone: yup.string().required(),
     father: yup.string(),
