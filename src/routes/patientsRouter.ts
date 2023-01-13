@@ -4,7 +4,6 @@ import { patientsSessionController } from "../controllers/patients/sessionPatien
 import { TutorCreateController } from "../controllers/patients/createTutor.controller";
 import { createAddressPatientController } from "../controllers/patients/createAddressPatient.controller";
 import { patientDataRequestSerializer, patientSessionRequestSerializer, tutorDataRequestSerializer } from "../schemas/patients";
-import { addressDataRequestSerializer } from "../schemas/addresses";
 import { verifyBodyRequestMiddleware } from "../middlewares/Global/verifyBodyRequest.middleware";
 import { patientsUpdateController } from "../controllers/patients/updatePatients.controller";
 import { ensureAuthMiddleware } from "../middlewares/Global/ensureAuth.middleware";
@@ -19,5 +18,4 @@ routePatients.patch("/:id", ensureAuthMiddleware, patientsUpdateController)
 routePatients.delete("/:id", ensureAuthMiddleware, patientsDeleteController)
 routePatients.post("/tutor", verifyBodyRequestMiddleware(tutorDataRequestSerializer), TutorCreateController)
 
-routePatients.post("/address", verifyBodyRequestMiddleware(addressDataRequestSerializer),createAddressPatientController)
 export default routePatients
