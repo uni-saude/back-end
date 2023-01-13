@@ -3,7 +3,7 @@ import { SchemaOf } from "yup";
 import { IPatient, IPatientExpressRequest, IPatientSessionRequest } from "../../interfaces/patientsInterface";
 import { ITutor, ITutorRequest } from "../../interfaces/tutorsInterface";
 
-const patientDataRequestSerializer:SchemaOf<IPatientExpressRequest> = yup.object().shape({
+const patientDataRequestSchema:SchemaOf<IPatientExpressRequest> = yup.object().shape({
     name: yup.string().required(),
     cpf: yup.string().required(),
     age: yup.number().required(),
@@ -18,27 +18,27 @@ const patientDataRequestSerializer:SchemaOf<IPatientExpressRequest> = yup.object
     addressId: yup.string().required()
 })
 
-const patientSessionRequestSerializer:SchemaOf<IPatientSessionRequest> = yup.object().shape({
+const patientSessionRequestSchema:SchemaOf<IPatientSessionRequest> = yup.object().shape({
     email: yup.string().required("email required field"),
     password: yup.string().required("password required field")
 })
 
-const patientDataWhiteout:SchemaOf<IPatient> = yup.object().shape({
+const patientDataWhiteoutSchema:SchemaOf<IPatient> = yup.object().shape({
     id: yup.string(),
     name: yup.string(),
     email: yup.string(),
     tutorId: yup.string(),
 })
 
-const tutorDataRequestSerializer:SchemaOf<ITutorRequest> = yup.object().shape({
+const tutorDataRequestSchema:SchemaOf<ITutorRequest> = yup.object().shape({
     name: yup.string().required(),
     cpf: yup.string().required(),
     phone: yup.string().required()
 })
 
-const tutorDataWhiteoutSerializer:SchemaOf<ITutor> = yup.object().shape({
+const tutorDataWhiteoutSchema:SchemaOf<ITutor> = yup.object().shape({
     id: yup.string(),
     name: yup.string()
 })
 
-export {patientDataWhiteout,patientDataRequestSerializer,tutorDataRequestSerializer,tutorDataWhiteoutSerializer,patientSessionRequestSerializer};
+export {patientDataWhiteoutSchema,patientDataRequestSchema,tutorDataRequestSchema,tutorDataWhiteoutSchema,patientSessionRequestSchema};

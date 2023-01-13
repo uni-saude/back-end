@@ -2,7 +2,7 @@ import { AppDataSource } from "../../data-source";
 import Patient from "../../entities/patientsEntity";
 import { AppError } from "../../error";
 import { IPatient, IPatientUpdate } from "../../interfaces/patientsInterface";
-import { patientDataWhiteout } from "../../schemas/patients";
+import { patientDataWhiteoutSchema } from "../../schemas/patients";
 
 const patientsUpdateService = async (patientData:IPatientUpdate, patientId:string, patientOwnerId:string):Promise<IPatient> => {
     const patientRepo = AppDataSource.getRepository(Patient)
@@ -10,13 +10,13 @@ const patientsUpdateService = async (patientData:IPatientUpdate, patientId:strin
     const foundOwnerPatient = await patientRepo.findOneBy({id:patientOwnerId})
 
     if(foundOwnerPatient !== foundPatient){
-        throw new AppError(401, "Não é permitido atualizar outras contas")
+        throw new AppError(401, "Don't is permission update outhers acconts")
     }
     
     const updatedPatient = patientRepo.create({...foundPatient, ...patientData})
     await patientRepo.save(updatedPatient)
 
-    const patientTrated = patientDataWhiteout.validate(updatedPatient, {stripUnknown:true})
+    const patientTrated = patientDataWhiteoutSchema.validate(updatedPatient, {stripUnknown:true})
     return patientTrated
 }
 export {patientsUpdateService};

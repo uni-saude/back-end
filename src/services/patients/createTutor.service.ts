@@ -1,8 +1,9 @@
 import Tutor from "../../entities/tutors.entity"
 import { AppDataSource } from "../../data-source"
 import { ITutor, ITutorRequest } from "../../interfaces/tutorsInterface"
-import { tutorDataWhiteoutSerializer } from "../../schemas/patients"
+
 import { AppError } from "../../error"
+import { tutorDataWhiteoutSchema } from "../../schemas/patients"
 
 const createTutorService = async (tutorData:ITutorRequest):Promise<ITutor> => {
     const tutorRepo = AppDataSource.getRepository(Tutor)
@@ -15,7 +16,7 @@ const createTutorService = async (tutorData:ITutorRequest):Promise<ITutor> => {
     const newTutor = tutorRepo.create(tutorData)
     await tutorRepo.save(newTutor)
     
-    const tutorWhiteout = tutorDataWhiteoutSerializer.validate(newTutor, {stripUnknown:true})
+    const tutorWhiteout = tutorDataWhiteoutSchema.validate(newTutor, {stripUnknown:true})
     return tutorWhiteout
 }
 export {createTutorService}

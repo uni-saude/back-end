@@ -1,6 +1,6 @@
 import { AppDataSource } from "../../data-source";
 import { IPatient, IPatientExpressRequest } from "../../interfaces/patientsInterface";
-import { patientDataWhiteout } from "../../schemas/patients";
+import { patientDataWhiteoutSchema } from "../../schemas/patients";
 import { AppError } from "../../error";
 import Tutor from "../../entities/tutors.entity";
 import Patient from "../../entities/patientsEntity";
@@ -27,7 +27,7 @@ const patientsCreateService = async (patientData:IPatientExpressRequest):Promise
     const newPatient = patientRepo.create(patientData)
 
     await patientRepo.save(newPatient)
-    const patientTrated = patientDataWhiteout.validate(newPatient, {stripUnknown:true})
+    const patientTrated = patientDataWhiteoutSchema.validate(newPatient, {stripUnknown:true})
     return patientTrated
 }
 export {patientsCreateService};

@@ -7,7 +7,7 @@ const patientsDeleteService = async (patientId:string, patientIdOwner:string):Pr
     const findPatient = await patientRepo.findOneBy({id:patientId})
     
     if(patientId !== patientIdOwner){
-        throw new AppError(401, "Não é permitido atualizar outras contas")
+        throw new AppError(401, "Don't have permission delete outher accounts")
     }    
     if(!findPatient){
         throw new AppError(400, "Don't exist this pacient")
