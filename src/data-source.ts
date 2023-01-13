@@ -1,3 +1,4 @@
+import "reflect-metadata";
 import "dotenv/config";
 import { DataSource, DataSourceOptions } from "typeorm";
 import path from "path";
@@ -22,7 +23,7 @@ const AppDataSourceConfig = (): DataSourceOptions => {
   return {
     type: "postgres",
     host: process.env.PGHOST,
-    port: Number(process.env.PGPORT),
+    port: parseInt(process.env.PGPORT),
     database: process.env.PGDATABASE,
     username: process.env.PGUSERNAME,
     password: process.env.PGPASSOWRD,
