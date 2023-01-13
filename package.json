@@ -16,6 +16,8 @@
     "yup": "^0.32.11"
   },
   "scripts": {
+    "build": "tsc",
+    "start": "node dist/server.js",
     "dev": "ts-node-dev src/server.ts --ignore-watch node_modules",
     "typeorm": "typeorm-ts-node-commonjs"
   },
