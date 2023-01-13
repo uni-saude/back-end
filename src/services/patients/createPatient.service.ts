@@ -1,13 +1,13 @@
-import { Request } from "express";
 import { AppDataSource } from "../../data-source";
 import { IPatient, IPatientExpressRequest } from "../../interfaces/patientsInterface";
 import { patientDataWhiteout } from "../../schemas/patients";
 import { AppError } from "../../error";
-import { Patients } from "../../entities/patientEntity";
+import Tutor from "../../entities/tutors.entity";
+import Patient from "../../entities/patientsEntity";
 
 const patientsCreateService = async (patientData:IPatientExpressRequest):Promise<IPatient> => {
     const { age, father, mother, tutorId } = patientData
-    const tutorRepo = AppDataSource.getRepository(Patients) // COLOCAR A ENTIDADE CERTA "tutors_patients"
+    const tutorRepo = AppDataSource.getRepository(Tutor)
     const valitedTutor = tutorRepo.findOneBy({id:tutorId})
 
     if(!valitedTutor){
@@ -17,7 +17,7 @@ const patientsCreateService = async (patientData:IPatientExpressRequest):Promise
         throw new AppError(401, "patient is a minor and has not registered guardians")
     }
 
-    const patientRepo = AppDataSource.getRepository(Patients) // COLOCAR A ENTIDADE CERTA "patients"
+    const patientRepo = AppDataSource.getRepository(Patient)
     const newPatient = patientRepo.create(patientData)
 
     await patientRepo.save(newPatient)

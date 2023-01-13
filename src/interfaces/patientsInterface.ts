@@ -19,7 +19,10 @@ export interface IPatient {
   email: string;
   tutorId: string;
 }
-
-export interface IPatientSession {
+export interface IPatientSessionRequest{
+  email: string;
+  password: string;
+}
+export interface IPatientSession{
   token: string;
 }

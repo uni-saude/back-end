@@ -1,6 +1,6 @@
 import * as yup from "yup"
 import { SchemaOf } from "yup";
-import { IPatient, IPatientExpressRequest } from "../../interfaces/patientsInterface";
+import { IPatient, IPatientExpressRequest, IPatientSessionRequest } from "../../interfaces/patientsInterface";
 import { ITutor, ITutorRequest } from "../../interfaces/tutorsInterface";
 
 const patientDataRequestSerializer:SchemaOf<IPatientExpressRequest> = yup.object().shape({
@@ -16,6 +16,11 @@ const patientDataRequestSerializer:SchemaOf<IPatientExpressRequest> = yup.object
     blood_type: yup.string().required(),
     tutorId: yup.string().required(),
     addressId: yup.string().required()
+})
+
+const patientSessionRequestSerializer:SchemaOf<IPatientSessionRequest> = yup.object().shape({
+    email: yup.string().required("email required field"),
+    password: yup.string().required("password required field")
 })
 
 const patientDataWhiteout:SchemaOf<IPatient> = yup.object().shape({
@@ -36,4 +41,4 @@ const tutorDataWhiteoutSerializer:SchemaOf<ITutor> = yup.object().shape({
     name: yup.string()
 })
 
-export {patientDataWhiteout,patientDataRequestSerializer,tutorDataRequestSerializer,tutorDataWhiteoutSerializer};
+export {patientDataWhiteout,patientDataRequestSerializer,tutorDataRequestSerializer,tutorDataWhiteoutSerializer,patientSessionRequestSerializer};
