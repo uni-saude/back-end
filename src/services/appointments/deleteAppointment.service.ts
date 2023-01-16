@@ -11,7 +11,7 @@ const deleteAppointmentService = async (id: string) => {
     throw new AppError(404, "appointment not found");
   }
 
-  await appointmentRep.delete(appointment);
+  await appointmentRep.delete(id);
 
   return {};
 };

@@ -7,7 +7,7 @@ const appointmentSerializer: SchemaOf<IAppointmentRequest> = yup
   .shape({
     appointment_date: yup.date().required(),
     appointment_date_type: yup.string().required(),
-    especialization: yup.string().required(),
+    specialization: yup.string().required(),
     patient_id: yup.string().required(),
     doctor_id: yup.string().required(),
     hospital_id: yup.string().required(),
