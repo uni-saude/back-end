@@ -17,7 +17,5 @@ routePatients.post("", verifyBodyRequestMiddleware(patientDataRequestSchema), pa
 routePatients.post("/login", verifyBodyRequestMiddleware(patientSessionRequestSchema), patientsSessionController)
 routePatients.patch("/:id", ensureAuthMiddleware, patientsUpdateController)
 routePatients.delete("/:id", ensureAuthMiddleware, patientsDeleteController)
-routePatients.post("/tutor", verifyBodyRequestMiddleware(tutorDataRequestSchema), TutorCreateController)
-routePatients.patch("/tutor/:id", ensureAuthMiddleware,tutorUpdateController)
 
 export default routePatients
