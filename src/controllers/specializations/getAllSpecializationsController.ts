@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { getAllSpecializationsService } from "../../services/specializations/getAllSpecializationsDoctors.service";
+import { getAllSpecializationsService } from "../../services/specializations/getAllSpecializations.service";
 
 export const getAllSpecializationsController = async (
   req: Request,
