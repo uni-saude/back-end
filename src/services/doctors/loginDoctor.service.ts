@@ -14,7 +14,7 @@ export const loginDoctorService = async (
 ): Promise<{ token: string; doctor: IDoctorResponse }> => {
   const doctorsRepository = AppDataSource.getRepository(Doctor);
 
-  const doctor = await doctorsRepository.findOne({
+  const doctor: Doctor = await doctorsRepository.findOne({
     where: { email: dataLogin.email },
     relations: {
       specialization: true,

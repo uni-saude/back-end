@@ -7,12 +7,19 @@ import { patientsUpdateController } from "../controllers/patients/updatePatients
 import { ensureAuthMiddleware } from "../middlewares/Global/ensureAuth.middleware";
 import { patientsDeleteController } from "../controllers/patients/deletePatient.controller";
 
+const routePatients = Router();
 
-const routePatients = Router()
+routePatients.post(
+  "",
+  verifyBodyRequestMiddleware(patientDataRequestSchema),
+  patientsCreateController
+);
+routePatients.post(
+  "/login",
+  verifyBodyRequestMiddleware(patientSessionRequestSchema),
+  patientsSessionController
+);
+routePatients.patch("/:id", ensureAuthMiddleware, patientsUpdateController);
+routePatients.delete("/:id", ensureAuthMiddleware, patientsDeleteController);
 
-routePatients.post("", verifyBodyRequestMiddleware(patientDataRequestSchema), patientsCreateController)
-routePatients.post("/login", verifyBodyRequestMiddleware(patientSessionRequestSchema), patientsSessionController)
-routePatients.patch("/:id", ensureAuthMiddleware, patientsUpdateController)
-routePatients.delete("/:id", ensureAuthMiddleware, patientsDeleteController)
-
-export default routePatients
+export default routePatients;
