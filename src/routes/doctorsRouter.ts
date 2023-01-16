@@ -1,8 +1,6 @@
 import { Router } from "express";
-import {
-  createDoctorController,
-  loginDoctorController,
-} from "../controllers/doctors/createDoctor.controller";
+import { createDoctorController } from "../controllers/doctors/createDoctor.controller";
+import { loginDoctorController } from "../controllers/doctors/loginDoctorController";
 import { verifyBodyRequestMiddleware } from "../middlewares/Global/verifyBodyRequest.middleware";
 import { createDoctorSchema, doctorLoginRequest } from "../schemas/doctors";
 
