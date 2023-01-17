@@ -11,7 +11,9 @@ import { routeTutors } from "./routes/tutorsRouter";
 import { routeMedications } from "./routes/medicationsRouter";
 import diagnosticsRouters from "./routes/diagnosticsRouter";
 import { specializationsRouter } from "./routes/specializationsDoctorsRouter";
+import vaccinesRoutes from "./routes/vaccines.router";
 import { examsRouter } from "./routes/examsRouter";
+
 
 
 
@@ -31,10 +33,10 @@ app.use("/doctors", doctorsRouter);
 app.use("/specializations", specializationsRouter);
 app.use("/patients", routePatients);
 app.use("/tutors", routeTutors);
+app.use("/vaccines", vaccinesRoutes);
 app.use("/medications", routeMedications);
 app.use("/diagnostics", diagnosticsRouters);
 app.use("/exams", examsRouter);
-
 
 
 app.use(handleErrorMiddleware);
