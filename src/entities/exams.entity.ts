@@ -14,9 +14,9 @@ class Exam {
   id: string;
 
   @CreateDateColumn()
-  data_solicitation: Date;
+  date_solicitation: Date;
 
-  @Column()
+  @Column({ nullable: true })
   date_apply: Date;
 
   @Column({ length: 64 })

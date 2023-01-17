@@ -10,6 +10,7 @@ import { doctorsRouter } from "./routes/doctorsRouter";
 import { routeTutors } from "./routes/tutorsRouter";
 import { routeMedications } from "./routes/medicationsRouter";
 import { specializationsRouter } from "./routes/specializationsDoctorsRouter";
+import { examsRouter } from "./routes/examsRouter";
 
 
 
@@ -25,8 +26,8 @@ app.use("/doctors", doctorsRouter);
 app.use("/specializations", specializationsRouter);
 app.use("/patients", routePatients);
 app.use("/tutors", routeTutors);
-app.use("/medications", routeMedications)
-
+app.use("/medications", routeMedications);
+app.use("/exams", examsRouter);
 
 
 app.use(handleErrorMiddleware);
