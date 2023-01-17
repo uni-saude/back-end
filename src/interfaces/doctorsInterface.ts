@@ -1,3 +1,7 @@
+export interface IDoctorExpressRequest {
+  id: string;
+}
+
 export interface ICreateDoctor {
   name: string;
   crm: string;

@@ -1,10 +1,7 @@
 import { Router } from "express";
 import { patientsCreateController } from "../controllers/patients/createPatient.controller";
 import { patientsSessionController } from "../controllers/patients/sessionPatient.controller";
-import {
-  patientDataRequestSchema,
-  patientSessionRequestSchema,
-} from "../schemas/patients";
+import { patientDataRequestSchema, patientSessionRequestSchema} from "../schemas/patients";
 import { verifyBodyRequestMiddleware } from "../middlewares/Global/verifyBodyRequest.middleware";
 import { patientsUpdateController } from "../controllers/patients/updatePatients.controller";
 import { ensureAuthMiddleware } from "../middlewares/Global/ensureAuth.middleware";
