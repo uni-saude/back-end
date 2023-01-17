@@ -1,4 +1,5 @@
 export interface IPatientExpressRequest {
+  id: string;
   name?: string;
   cpf?: string;
   age?: number;
