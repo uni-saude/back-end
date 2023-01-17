@@ -5,6 +5,7 @@ import { verifyBodyRequestMiddleware } from "../middlewares/Global/verifyBodyReq
 import { createExamSchema } from "../schemas/exams";
 
 export const examsRouter = Router();
+
 examsRouter.post(
   "/:id",
   verifyBodyRequestMiddleware(createExamSchema),

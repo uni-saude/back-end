@@ -7,5 +7,6 @@ export const createExamController = async (req: Request, res: Response) => {
   const idPatient: string = req.params.id;
   const dataExam: ICreateExamRequest = req.body;
   const newExam = await createExamService(idDoctor, idPatient, dataExam);
+
   return res.status(201).json(newExam);
 };

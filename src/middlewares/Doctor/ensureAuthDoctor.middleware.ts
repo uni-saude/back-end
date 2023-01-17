@@ -20,7 +20,9 @@ export const ensureAuthDoctorMiddleware = async (
       throw new AppError(401, err.message);
     }
 
-    req.doctor.id = String(decoded.sub);
+    req.doctor = {
+      id: String(decoded.sub),
+    };
     return next();
   });
 };

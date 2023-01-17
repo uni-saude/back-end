@@ -4,6 +4,7 @@ import Exam from "../../entities/exams.entity";
 import Patient from "../../entities/patientsEntity";
 import { AppError } from "../../error";
 import { ICreateExamRequest } from "../../interfaces/examsInterface";
+import { createExamResponseSchema } from "../../schemas/exams";
 
 export const createExamService = async (
   idDoctor: string,
@@ -27,5 +28,7 @@ export const createExamService = async (
   newExam.patient = foundPatient;
   await examsRepository.save(newExam);
 
-  return newExam;
+  return await createExamResponseSchema.validate(newExam, {
+    stripUnknown: true,
+  });
 };
