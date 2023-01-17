@@ -4,9 +4,19 @@ import { patientDataWhiteoutSchema } from "../../schemas/patients";
 import { AppError } from "../../error";
 import Tutor from "../../entities/tutors.entity";
 import Patient from "../../entities/patientsEntity";
+import Address from "../../entities/addresses.entity";
+import { IAddress } from "../../interfaces/addressesInterface";
 
-const patientsCreateService = async (patientData:IPatientExpressRequest):Promise<IPatient> => {
-    const { age, father, mother, tutorId, email, cpf } = patientData
+const patientsCreateService = async (patientData:any, addressData:object) => {
+    //Criar endereço
+    const addressRepository = AppDataSource.getRepository(Address);
+    const newAddress = addressRepository.create(addressData);
+    await addressRepository.save(newAddress);
+    const {id} = newAddress
+    //---------------            
+    delete patientData.address
+    patientData = {...patientData, addressId:id}
+    const {cpf, age, email, father, mother, tutorId} = patientData
     const tutorRepo = AppDataSource.getRepository(Tutor)
     const valitedTutor = tutorRepo.findOneBy({id:tutorId})
 
@@ -22,12 +32,15 @@ const patientsCreateService = async (patientData:IPatientExpressRequest):Promise
     
     if(findPatient){
         throw new AppError(400, "Patient is alredy exist")
-    }
+    }  
 
     const newPatient = patientRepo.create(patientData)
-
+    console.log(newPatient, 'novo paciente');
+    
     await patientRepo.save(newPatient)
-    const patientTrated = patientDataWhiteoutSchema.validate(newPatient, {stripUnknown:true})
+    const patientTrated = await patientDataWhiteoutSchema.validate(newPatient, {stripUnknown:true})
+    console.log(patientTrated, 'tratado');
+    
     return patientTrated
 }
 export {patientsCreateService};

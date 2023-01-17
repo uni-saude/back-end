@@ -17,3 +17,4 @@ export interface IAddress{
     city: string;
     state: string;
 }
+export interface AdressObjectList extends Array<IAddress>{}

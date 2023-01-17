@@ -1,3 +1,5 @@
+import { AdressObjectList } from "./addressesInterface";
+
 export interface IPatientExpressRequest {
   name: string;
   cpf: string;
@@ -10,7 +12,7 @@ export interface IPatientExpressRequest {
   mother: string;
   blood_type: string;
   tutorId: string;
-  addressId: string;
+  address: AdressObjectList[];
 }
 
 export interface IPatient {
@@ -18,6 +20,7 @@ export interface IPatient {
   name: string;
   email: string;
   tutorId: string;
+  addressId: string;
 }
 export interface IPatientSessionRequest{
   email: string;

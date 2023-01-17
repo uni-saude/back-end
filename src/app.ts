@@ -7,12 +7,8 @@ import tratamentsRoutes from "./routes/tratamentsRouter";
 import routePatients from "./routes/patientsRouter";
 import { doctorsRouter } from "./routes/doctorsRouter";
 import { routeTutors } from "./routes/tutorsRouter";
-<<<<<<< HEAD
-import { routeMedications } from "./routes/medicationsRouter";
-=======
 import { specializationsRouter } from "./routes/specializationsDoctorsRouter";
-
->>>>>>> 196b7686ee51bf05ad6cf9e40aea41232940d027
+import { routeMedications } from "./routes/medicationsRouter";
 
 export const app = express();
 
