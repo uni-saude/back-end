@@ -6,7 +6,7 @@ import routePatients from "./routes/patientsRouter";
 import { doctorsRouter } from "./routes/doctorsRouter";
 import { routeTutors } from "./routes/tutorsRouter";
 import { specializationsRouter } from "./routes/specializationsDoctorsRouter";
-
+import vaccinesRoutes from "./routes/vaccines.router";
 
 export const app = express();
 
@@ -16,6 +16,7 @@ app.use("*", cors());
 app.use("/doctors", doctorsRouter);
 app.use("/specializations", specializationsRouter);
 app.use("/patients", routePatients);
-app.use("/tutors", routeTutors)
+app.use("/tutors", routeTutors);
+app.use("/vaccines", vaccinesRoutes);
 
 app.use(handleErrorMiddleware);
