@@ -1,15 +1,10 @@
 export interface IMedication{
     name: string;
     tratament: string;
+    initial_date: Date;
     description: string;
-}
-export interface IMedicationRequest{
-    name: string;
-    tratament: string;
-    initial_data: string;
-    description: string;
-    final_date: string;
-    patient: string
+    final_date: Date;
+    patient: string;
 }
 export interface IMedicationUpdate{
     name?: string;
@@ -17,3 +12,4 @@ export interface IMedicationUpdate{
     description?: string;
     final_date?: string;
 }
+export interface IMedicationsList extends Array<IMedication>{}
