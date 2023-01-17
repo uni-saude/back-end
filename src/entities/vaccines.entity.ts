@@ -16,7 +16,7 @@ class Vaccine {
   dose: number;
 
   @Column()
-  next_dose: number;
+  next_dose: Date;
 
   @ManyToOne(() => Patient, (patient) => patient.vaccine)
   patient: Patient;
