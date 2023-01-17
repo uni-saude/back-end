@@ -3,6 +3,7 @@ import { SchemaOf } from "yup";
 import {
   ICreateExamRequest,
   ICreateExamResponse,
+  IUpdateExamRequest,
 } from "../../interfaces/examsInterface";
 
 export const createExamSchema: SchemaOf<ICreateExamRequest> = yup
@@ -21,4 +22,11 @@ export const createExamResponseSchema: SchemaOf<ICreateExamResponse> = yup
     date_solicitation: yup.date(),
     name: yup.string(),
     id: yup.string(),
+  });
+
+export const markDoneExamRequestSchema: SchemaOf<IUpdateExamRequest> = yup
+  .object()
+  .shape({
+    date_apply: yup.date().required(),
+    status: yup.boolean().required(),
   });

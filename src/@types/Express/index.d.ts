@@ -5,13 +5,10 @@ declare global {
   namespace Express {
     interface Request {
       patient: IPatientExpressRequest;
-<<<<<<< HEAD
       doctor: IDoctorExpressRequest;
-=======
       address: {
         id: string;
       };
->>>>>>> develop
     }
   }
 }

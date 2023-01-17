@@ -10,6 +10,7 @@ import { ITutor, ITutorRequest } from "../../interfaces/tutorsInterface";
 const patientDataRequestSchema: SchemaOf<IPatientExpressRequest> = yup
   .object()
   .shape({
+    id: yup.string(),
     name: yup.string().required(),
     cpf: yup.string().required(),
     age: yup.number().required(),
