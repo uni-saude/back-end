@@ -4,6 +4,9 @@ declare global {
   namespace Express {
     interface Request {
       patient: IPatientExpressRequest;
+      address: {
+        id: string;
+      };
     }
   }
 }
