@@ -12,8 +12,9 @@ const patientsSessionService = async ({
 }: IPatientSessionRequest): Promise<any> => {
   const patientRepo = AppDataSource.getRepository(Patient);
   const patientFind = await patientRepo.findOneBy({ email: email });
+  console.log(patientFind);
 
-  if (!patientFind || patientFind === null) {
+  if (!patientFind) {
     throw new AppError(403, "User or password invalid");
   }
   const passwordMatch = await compare(password, patientFind.password);
