@@ -4,11 +4,12 @@ import deleteVaccineController from "../controllers/vaccines/deleteVaccine.contr
 import listAllVaccinesController from "../controllers/vaccines/listAllVaccines.controller";
 import listVaccinesByIdController from "../controllers/vaccines/listVaccinesById.controller";
 import updateVaccineController from "../controllers/vaccines/updateVaccine.controller";
+import { ensureAuthPatientMiddleware } from "../middlewares/patient/ensureAuthPatient.middleware";
 
 const vaccinesRoutes = Router();
 
-vaccinesRoutes.post("", createVaccineController);
-vaccinesRoutes.get("", listAllVaccinesController);
+vaccinesRoutes.post("/:id", createVaccineController);
+vaccinesRoutes.get("", ensureAuthPatientMiddleware, listAllVaccinesController);
 vaccinesRoutes.get("/:id", listVaccinesByIdController);
 vaccinesRoutes.patch("/:id", updateVaccineController);
 vaccinesRoutes.delete("/:id", deleteVaccineController);

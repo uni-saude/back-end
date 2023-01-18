@@ -1,5 +1,8 @@
 import { AppDataSource } from "../../data-source";
-import { IPatient, IPatientExpressRequest } from "../../interfaces/patientsInterface";
+import {
+  IPatient,
+  IPatientExpressRequest,
+} from "../../interfaces/patientsInterface";
 import { patientDataWhiteoutSchema } from "../../schemas/patients";
 import { AppError } from "../../error";
 import Tutor from "../../entities/tutors.entity";
@@ -22,12 +25,17 @@ const patientsCreateService = async (patientData:any, addressData:Object):Promis
     const tutorRepo = AppDataSource.getRepository(Tutor)
     const valitedTutor = tutorRepo.findOneBy({id:tutorId})
 
-    if(!valitedTutor){
-        throw new AppError(404, "Tutor is not registred")
+  if (!valitedTutor) {
+    throw new AppError(404, "Tutor is not registred");
+  }
+  if (age < 18) {
+    if (!tutorId) {
+      throw new AppError(
+        401,
+        "patient is a minor and has not registered guardians"
+      );
     }
-    if(age < 18 && father.length === 0 && mother.length === 0){
-        throw new AppError(401, "patient is a minor and has not registered guardians")
-    }
+  }
 
     const patientRepo = AppDataSource.getRepository(Patient)
     const findPatient = await patientRepo.findOneBy({email:email, cpf:cpf})

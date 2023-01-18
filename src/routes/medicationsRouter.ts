@@ -6,12 +6,26 @@ import { verifyBodyRequestMiddleware } from "../middlewares/Global/verifyBodyReq
 import { medicationBodySchema } from "../schemas/medications";
 import { medicationUpdateController } from "../controllers/medications/updateMedication.controller";
 import { medicationListController } from "../controllers/medications/listMedications.controller";
+import { ensureAuthDoctorMiddleware } from "../middlewares/Doctor/ensureAuthDoctor.middleware";
 
-const routeMedications = Router()
+const routeMedications = Router();
 
-routeMedications.post("", ensureAuthMiddleware, verifyBodyRequestMiddleware(medicationBodySchema),medicationCreateController)
-routeMedications.delete("/:id", ensureAuthMiddleware, medicationDeleteController)
-routeMedications.patch("/:id", ensureAuthMiddleware, medicationUpdateController)
-routeMedications.get("", ensureAuthMiddleware, medicationListController)
+routeMedications.post(
+  "/:id",
+  ensureAuthDoctorMiddleware,
+  verifyBodyRequestMiddleware(medicationBodySchema),
+  medicationCreateController
+);
+routeMedications.delete(
+  "/:id",
+  ensureAuthDoctorMiddleware,
+  medicationDeleteController
+);
+routeMedications.patch(
+  "/:id",
+  ensureAuthDoctorMiddleware,
+  medicationUpdateController
+);
+routeMedications.get("/:id", medicationListController);
 
-export {routeMedications};
+export { routeMedications };

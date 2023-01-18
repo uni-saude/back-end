@@ -15,7 +15,7 @@ class Vaccine {
   @Column()
   dose: number;
 
-  @Column()
+  @Column({ nullable: true })
   next_dose: Date;
 
   @ManyToOne(() => Patient, (patient) => patient.vaccine)

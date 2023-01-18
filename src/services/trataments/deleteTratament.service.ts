@@ -14,9 +14,6 @@ const deleteTratamentService = async (tratamentId: string) => {
   }
 
   await tratamentRepository.remove(tratament);
-  await tratamentRepository.save({
-    ...tratament,
-  });
 };
 
 export default deleteTratamentService;
