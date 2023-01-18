@@ -1,6 +1,9 @@
 import * as yup from "yup";
 import { SchemaOf } from "yup";
-import { IAppointmentRequest } from "../../interfaces/appointmentsInterface";
+import {
+  IAppointmentRequest,
+  IAppointmentResponse,
+} from "../../interfaces/appointmentsInterface";
 
 const appointmentSerializer: SchemaOf<IAppointmentRequest> = yup
   .object()
@@ -13,4 +16,13 @@ const appointmentSerializer: SchemaOf<IAppointmentRequest> = yup
     hospital_id: yup.string().required(),
   });
 
-export { appointmentSerializer };
+const appointmentResponseSerializer: SchemaOf<IAppointmentResponse> = yup
+  .object()
+  .shape({
+    appointment_date_type: yup.string(),
+    appointment_date: yup.date(),
+    specialization: yup.string(),
+    id: yup.string(),
+  });
+
+export { appointmentSerializer, appointmentResponseSerializer };

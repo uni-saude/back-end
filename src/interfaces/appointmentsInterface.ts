@@ -7,4 +7,11 @@ interface IAppointmentRequest {
   doctor_id: string;
 }
 
-export { IAppointmentRequest };
+interface IAppointmentResponse {
+  id: string;
+  specialization: string;
+  appointment_date: Date;
+  appointment_date_type: string;
+}
+
+export { IAppointmentRequest, IAppointmentResponse };

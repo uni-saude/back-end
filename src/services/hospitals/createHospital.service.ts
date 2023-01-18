@@ -34,7 +34,7 @@ const createHospitalService = async (payload: IHospital) => {
 
   await hospitalsRep.save(newHospital);
 
-  const serviceResponse = { name: payload.name, address: { ...address } };
+  const serviceResponse = { ...newHospital, address: { ...address } };
 
   return serviceResponse;
 };
