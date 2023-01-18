@@ -1,5 +1,7 @@
 import { Router } from "express";
 import { createExamController } from "../controllers/exams/createExam.controller";
+import listAllExamsController from "../controllers/exams/listAllExams.controller";
+import listExamByIdController from "../controllers/exams/listExamById.controller";
 import { markDoneExamController } from "../controllers/exams/markDoneExam.controller";
 import { ensureAuthDoctorMiddleware } from "../middlewares/Doctor/ensureAuthDoctor.middleware";
 import { verifyBodyRequestMiddleware } from "../middlewares/Global/verifyBodyRequest.middleware";
@@ -21,3 +23,7 @@ examsRouter.patch(
   ensureAuthPatientMiddleware,
   markDoneExamController
 );
+
+examsRouter.get("", listAllExamsController);
+
+examsRouter.get("/:id", listExamByIdController);
