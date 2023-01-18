@@ -11,7 +11,7 @@ export interface IPatientExpressRequest {
   mother?: string;
   blood_type?: string;
   tutorId?: string;
-  addressId?: string;
+  address?: object;
 }
 
 export interface IPatient {
@@ -19,6 +19,7 @@ export interface IPatient {
   name: string;
   email: string;
   tutorId: string;
+  addressId: string;
 }
 export interface IPatientSessionRequest {
   email: string;

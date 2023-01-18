@@ -3,7 +3,8 @@ import { patientsCreateService } from "../../services/patients/createPatient.ser
 
 const patientsCreateController = async (req: Request, res: Response) => {
   const patientData = req.body;
-  const createdPatient = await patientsCreateService(patientData);
+  const addressData = req.body.address
+  const createdPatient = await patientsCreateService(patientData, addressData);
   return res.status(201).json(createdPatient);
 };
 export { patientsCreateController };
