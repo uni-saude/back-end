@@ -14,8 +14,6 @@ const createAppointMentService = async (payload: IAppointmentRequest) => {
 
   const localHour = hour + 3;
 
-  console.log(hour);
-
   if (day === 0 || day === 6) {
     throw new AppError(400, "invalid Date");
   }
