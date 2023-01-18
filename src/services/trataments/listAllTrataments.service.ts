@@ -1,10 +1,17 @@
 import { AppDataSource } from "../../data-source";
 import Tratament from "../../entities/trataments.entity";
 
-const listAllTratamentService = async (): Promise<Tratament[]> => {
+const listAllTratamentService = async (
+  idPatient: string
+): Promise<Tratament[]> => {
   const tratamentsrepository = AppDataSource.getRepository(Tratament);
+  const tratamentsQueryBuilder = tratamentsrepository.createQueryBuilder("t");
 
-  const trataments = await tratamentsrepository.find();
+  console.log(idPatient);
+
+  const trataments = await tratamentsQueryBuilder
+    .where("t.patientId = :idPatient", { idPatient })
+    .getMany();
 
   return trataments;
 };

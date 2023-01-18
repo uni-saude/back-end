@@ -5,6 +5,7 @@ import listAllDiagnosticsController from "../controllers/diagnostics/listAllDiag
 import listDiagnosticByIdController from "../controllers/diagnostics/listDiagnosticById.controller";
 import updateDiagnosticController from "../controllers/diagnostics/updateDiagnostic.controller";
 import { verifyBodyRequestMiddleware } from "../middlewares/Global/verifyBodyRequest.middleware";
+import { ensureAuthPatientMiddleware } from "../middlewares/patient/ensureAuthPatient.middleware";
 import {
   diagnosticSerializer,
   diagnosticUpdateSerializer,
@@ -13,11 +14,15 @@ import {
 const diagnosticsRouters = Router();
 
 diagnosticsRouters.post(
-  "",
+  "/:id",
   verifyBodyRequestMiddleware(diagnosticSerializer),
   createDiagnosticController
 );
-diagnosticsRouters.get("", listAllDiagnosticsController);
+diagnosticsRouters.get(
+  "",
+  ensureAuthPatientMiddleware,
+  listAllDiagnosticsController
+);
 diagnosticsRouters.get("/:id", listDiagnosticByIdController);
 diagnosticsRouters.patch(
   "/:id",

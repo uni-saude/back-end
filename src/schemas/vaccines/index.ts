@@ -2,12 +2,14 @@ import * as yup from "yup";
 import { SchemaOf } from "yup";
 import { IVaccinesRequest } from "../../interfaces/vaccines.interface";
 
-const vaccinesSerializer: SchemaOf<IVaccinesRequest> = yup.object().shape({
-  name: yup.string().max(64).required(),
-  date_apply: yup.date().required(),
-  dose: yup.number().max(2).required(),
-  next_dose: yup.date().notRequired(),
-  patient: yup.number().required(),
-});
+const vaccinesSerializerReponse: SchemaOf<IVaccinesRequest> = yup
+  .object()
+  .shape({
+    next_dose: yup.mixed(),
+    date_apply: yup.date(),
+    dose: yup.number(),
+    name: yup.string(),
+    id: yup.string(),
+  });
 
-export default vaccinesSerializer;
+export default vaccinesSerializerReponse;

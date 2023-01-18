@@ -19,7 +19,7 @@ class Tratament {
   @Column()
   initial_date: Date;
 
-  @Column()
+  @Column({ nullable: true })
   final_date: Date;
 
   @ManyToOne(() => Patient, (patient) => patient.tratament)
