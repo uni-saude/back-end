@@ -18,7 +18,7 @@ class Medication {
   @Column({ length: 200 })
   description: string;
 
-  @Column()
+  @Column({ nullable: true })
   final_date: Date;
 
   @ManyToOne(() => Patient, (patient) => patient.medication)

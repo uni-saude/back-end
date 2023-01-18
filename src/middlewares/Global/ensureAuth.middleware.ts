@@ -21,8 +21,7 @@ const ensureAuthMiddleware = (req:Request, res:Response, next:NextFunction) => {
         req.body = {
             ...req.body,
             user: {
-                id: decoded.user.id,
-                isAdm: decoded.user.isAdm
+                id: decoded.user.id
             }
         }
         return next()
