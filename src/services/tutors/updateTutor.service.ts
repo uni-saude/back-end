@@ -1,4 +1,3 @@
-import { Request } from "express"
 import { AppDataSource } from "../../data-source"
 import Tutor from "../../entities/tutors.entity"
 import { AppError } from "../../error"
