@@ -22,7 +22,15 @@ const patientDataRequestSchema: SchemaOf<IPatientExpressRequest> = yup
     mother: yup.string().required(),
     blood_type: yup.string().required(),
     tutorId: yup.string(),
-    addressId: yup.string().required(),
+    address: yup.object().shape({
+      street: yup.string().required(),
+      number: yup.number().required(),
+      complement: yup.string().required(),
+      district: yup.string().required(),
+      zip_code: yup.number().required(),
+      city: yup.string().required(),
+      state: yup.string().required()
+    }),
   });
 
 const patientSessionRequestSchema: SchemaOf<IPatientSessionRequest> = yup
@@ -37,6 +45,7 @@ const patientDataWhiteoutSchema: SchemaOf<IPatient> = yup.object().shape({
   name: yup.string(),
   email: yup.string(),
   tutorId: yup.string(),
+  addressId: yup.string(),
 });
 
 const tutorDataRequestSchema: SchemaOf<ITutorRequest> = yup.object().shape({
