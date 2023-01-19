@@ -7,8 +7,8 @@ import {
 } from "../schemas/patients";
 import { verifyBodyRequestMiddleware } from "../middlewares/Global/verifyBodyRequest.middleware";
 import { patientsUpdateController } from "../controllers/patients/updatePatients.controller";
-import { ensureAuthMiddleware } from "../middlewares/Global/ensureAuth.middleware";
 import { patientsDeleteController } from "../controllers/patients/deletePatient.controller";
+import { ensureAuthPatientMiddleware } from "../middlewares/patient/ensureAuthPatient.middleware";
 
 const routePatients = Router();
 
@@ -22,7 +22,15 @@ routePatients.post(
   verifyBodyRequestMiddleware(patientSessionRequestSchema),
   patientsSessionController
 );
-routePatients.patch("/:id", ensureAuthMiddleware, patientsUpdateController);
-routePatients.delete("/:id", ensureAuthMiddleware, patientsDeleteController);
+routePatients.patch(
+  "/:id",
+  ensureAuthPatientMiddleware,
+  patientsUpdateController
+);
+routePatients.delete(
+  "/:id",
+  ensureAuthPatientMiddleware,
+  patientsDeleteController
+);
 
 export default routePatients;
