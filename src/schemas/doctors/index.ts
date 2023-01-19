@@ -21,6 +21,7 @@ export const doctorResponseSchema: SchemaOf<IDoctorResponse> = yup
     crm: yup.string(),
     email: yup.string(),
     name: yup.string(),
+    id: yup.string(),
   });
 
 export const doctorLoginRequest: SchemaOf<ILoginDoctorRequest> = yup
