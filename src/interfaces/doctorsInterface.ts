@@ -11,6 +11,7 @@ export interface ICreateDoctor {
 }
 
 export interface IDoctorResponse {
+  id: string;
   name: string;
   crm: string;
   email: string;
